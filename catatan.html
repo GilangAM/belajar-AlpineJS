@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catatan Alpine.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-10">
+
+    <!-- Contoh Alpine.js -->
+    <div x-data="{ 
+        pesan: 'Halo, ini Alpine.js!', 
+        open: false,
+        count: 0,
+        warna: 'bg-blue-500',
+        daftar: ['Item 1', 'Item 2', 'Item 3']
+    }" class="max-w-md mx-auto bg-white p-6 rounded-lg shadow">
+
+        <!-- x-text: Menampilkan teks -->
+        <h2 class="text-xl font-bold text-gray-800 mb-4">
+            <span x-text="pesan"></span>
+        </h2>
+
+        <!-- x-bind: Mengubah atribut secara dinamis -->
+        <button @click="count++" :class="warna" class="px-4 py-2 text-white rounded-md">
+            Klik Saya (<span x-text="count"></span>)
+        </button>
+
+        <!-- x-show: Menampilkan elemen secara dinamis -->
+        <div x-show="open" class="mt-4 p-3 bg-green-300 rounded">
+            Ini adalah pesan yang bisa muncul & menghilang.
+        </div>
+
+        <!-- Tombol untuk toggle -->
+        <button @click="open = !open" class="mt-2 bg-gray-700 text-white px-4 py-2 rounded-md">
+            Toggle Pesan
+        </button>
+
+        <!-- x-model: Binding input -->
+        <div class="mt-4">
+            <input x-model="pesan" type="text" class="border p-2 rounded w-full" placeholder="Ubah teks di sini">
+        </div>
+
+        <!-- x-for: Looping data -->
+        <ul class="mt-4 list-disc list-inside">
+            <template x-for="(item, index) in daftar" :key="index">
+                <li x-text="item" class="text-gray-700"></li>
+            </template>
+        </ul>
+
+        <!-- x-effect: Efek otomatis -->
+        <div x-effect="console.log('Pesan berubah:', pesan)"></div>
+
+    </div>
+
+</body>
+</html>
